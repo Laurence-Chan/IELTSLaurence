@@ -1,84 +1,67 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IELTS Laurence | 学习主页</title>
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <title>IELTS Laurence | 雅思备考指南</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <meta name="theme-color" content="#007AFF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
-  <!-- ================= HEADER / NAV ================= -->
-  <header class="site-header">
-    <div class="container flex space-between align-center">
-      <a href="#" class="logo">IELTS Laurence</a>
-      <nav id="main-nav">
-        <ul class="nav-list flex gap-2">
-          <li><a href="#exam">考试技巧</a></li>
-          <li><a href="#improve">针对性提高</a></li>
-          <li><a href="#learn">跟我学习</a></li>
-          <li><a href="#plan">学习计划安排</a></li>
-        </ul>
-      </nav>
-      <button id="nav-toggle" aria-label="Open Menu">☰</button>
+  <header class="header">
+    <div class="container header__container">
+      <a href="/" class="header__logo">IELTS Laurence</a>
     </div>
   </header>
 
   <main>
-    <!-- ================= 考试技巧 ================= -->
-    <section id="exam" class="section">
-      <div class="container">
-        <h2 class="section-title">考试技巧</h2>
-        <div class="grid grid-3 gap-2">
-          <a href="listening.html" class="card text-center">听力技巧</a>
-          <a href="reading.html" class="card text-center">阅读技巧</a>
-          <a href="writing1.html" class="card text-center">小作文技巧</a>
-          <a href="writing2.html" class="card text-center">大作文技巧</a>
-          <a href="speaking.html" class="card text-center">口语技巧</a>
-        </div>
-      </div>
-    </section>
+    <div class="container main-nav">
+      <a href="考试技巧/index.html" class="nav-item">
+        <h2>考试技巧</h2>
+        <p>应试四门功课：听、说、读、写</p>
+      </a>
+      
+      <a href="针对性提高/index.html" class="nav-item">
+        <h2>针对性学习</h2>
+        <p>从底层逻辑出发，学习对应技能</p>
+      </a>
+      
+      <a href="跟我学习/study-plan.html" class="nav-item">
+        <h2>做学习计划</h2>
+        <p>自动生成属于你的学习计划</p>
+      </a>
 
-    <!-- ================= 针对性提高 ================= -->
-    <section id="improve" class="section alt">
-      <div class="container">
-        <h2 class="section-title">针对性提高</h2>
-        <div class="grid grid-3 gap-2">
-          <a href="vocab-listening.html" class="card text-center">听力词汇</a>
-          <a href="vocab-reading.html" class="card text-center">阅读词汇</a>
-          <a href="complex-sentences.html" class="card text-center">长难句学习</a>
-          <a href="vocab-writing1.html" class="card text-center">小作文词汇</a>
-          <a href="patterns-writing1.html" class="card text-center">小作文句式</a>
-          <a href="vocab-writing2.html" class="card text-center">大作文词汇</a>
-          <a href="patterns-writing2.html" class="card text-center">大作文句式</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 跟我学习 ================= -->
-    <section id="learn" class="section">
-      <div class="container text-center narrow">
-        <h2 class="section-title">跟我学习</h2>
-        <p>联系我，提升雅思成绩。</p>
-        <a href="about.html" class="btn primary">获取联系方式</a>
-      </div>
-    </section>
-
-    <!-- ================= 学习计划安排 ================= -->
-    <section id="plan" class="section alt">
-      <div class="container text-center narrow">
-        <h2 class="section-title">学习计划安排</h2>
-        <p>根据你的水平与目标，自动生成专属学习计划，合理分配备考时间。</p>
-        <a href="study-plan.html" class="btn primary">生成学习计划</a>
-      </div>
-    </section>
+      <a href="跟我学习/index.html" class="nav-item">
+        <h2>跟我学</h2>
+        <p>跟本网站制作者本人学习</p>
+      </a>
+      
+    </div>
   </main>
 
-  <!-- ============== JS (Optional) ============== -->
   <script>
-    const toggleBtn = document.getElementById('nav-toggle');
-    const nav = document.getElementById('main-nav');
-    toggleBtn.addEventListener('click', () => nav.classList.toggle('open'));
+    // 添加交互动画
+    const navItems = document.querySelectorAll('.nav-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    navItems.forEach((item, index) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+      item.style.transitionDelay = `${index * 0.1}s`;
+      observer.observe(item);
+    });
   </script>
 </body>
 </html>
